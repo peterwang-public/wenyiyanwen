@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文以言文 · 技术支持</title>
+  <meta name="description" content="文以言文 - 背诵文言文，但不止于文言文。技术支持、常见问题、隐私政策与服务条款。">
+  <link rel="icon" type="image/png" href="app-icon.png">
+  <link rel="apple-touch-icon" href="app-icon.png">
+  <style>
+    :root {
+      --bg: #fff8f2;
+      --bg-soft: #fff1e6;
+      --accent: #ff8c00;
+      --accent-deep: #e06f00;
+      --text: #2b2b2b;
+      --text-secondary: #6b6b6b;
+      --card: #ffffff;
+      --border: #f0e0d0;
+      --radius: 16px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--accent-deep);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 248, 242, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--text);
+    }
+
+    .brand .logo {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-deep);
+      text-decoration: none;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 72px 0 56px;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .hero-icon {
+      width: 128px;
+      height: 128px;
+      border-radius: 28px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      margin-bottom: 20px;
+    }
+
+    .hero .tagline {
+      font-size: 19px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .hero .sub {
+      font-size: 15px;
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin: 0 auto 28px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .btn:hover {
+      background: var(--accent-deep);
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    /* Sections */
+    section {
+      padding: 48px 0;
+    }
+
+    section:nth-child(even) {
+      background: var(--bg-soft);
+    }
+
+    .section-title {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      text-align: center;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 15px;
+      margin-bottom: 32px;
+    }
+
+    /* Features */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .feature {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+    }
+
+    .feature .icon {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .feature h3 {
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    .feature p {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    /* FAQ */
+    .faq details {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .faq summary {
+      cursor: pointer;
+      padding: 16px 20px;
+      font-weight: 600;
+      font-size: 15px;
+      list-style: none;
+      position: relative;
+      user-select: none;
+    }
+
+    .faq summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq summary::after {
+      content: "+";
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      color: var(--accent);
+      font-weight: 400;
+    }
+
+    .faq details[open] summary::after {
+      content: "–";
+    }
+
+    .faq .answer {
+      padding: 0 20px 18px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .faq .answer p + p {
+      margin-top: 8px;
+    }
+
+    /* Legal */
+    .legal-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      font-size: 14px;
+    }
+
+    .legal-card h3 {
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+
+    .legal-card h4 {
+      font-size: 15px;
+      margin: 20px 0 8px;
+    }
+
+    .legal-card p {
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+    }
+
+    .legal-card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .legal-card li {
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .legal-card li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* Contact */
+    .contact {
+      text-align: center;
+    }
+
+    .contact .email {
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: 12px;
+    }
+
+    .contact .note {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 8px;
+    }
+
+    /* Footer */
+    footer {
+      padding: 32px 0;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        gap: 14px;
+        font-size: 13px;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .hero {
+        padding: 48px 0 40px;
+      }
+
+      .hero-icon {
+        width: 96px;
+        height: 96px;
+        border-radius: 22px;
+      }
+
+      .legal-card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav">
+      <a href="#top" class="brand" style="text-decoration:none;">
+        <img class="logo" src="app-icon.png" alt="文以言文">
+        <span>文以言文</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#features">功能</a>
+        <a href="#faq">常见问题</a>
+        <a href="#contact">联系我们</a>
+        <a href="#privacy">隐私政策</a>
+        <a href="#terms">服务条款</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <div class="container hero">
+      <img class="hero-icon" src="app-icon.png" alt="文以言文 App 图标">
+      <h1>文以言文</h1>
+      <p class="tagline">背诵文言文，但不止于文言文</p>
+      <p class="sub">字·意·句三合一，配合艾宾浩斯复习与 AI 讲解，把每一个字词真正吃透。任何想背的内容，都能做成词单。</p>
+      <!-- TODO: 替换为真实的 App Store 链接 -->
+    </div>
+
+    <!-- Features -->
+    <section id="features">
+      <div class="container">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-sub">从文言文出发，把「要背的东西」交给科学安排</p>
+        <div class="features">
+          <div class="feature">
+            <div class="icon">📖</div>
+            <h3>字·意·句三合一</h3>
+            <p>每个词条包含字、释义、例句三层内容，把字放进语境里理解、记住，不再孤立死记。</p>
+          </div>
+          <div class="feature">
+            <div class="icon">🧩</div>
+            <h3>三种背诵模式</h3>
+            <p>支持「字意句」「QA 问答」「ABCD 选择」，换着方式加深记忆，也适合背单词、记知识点。</p>
+          </div>
+          <div class="feature">
+            <div class="icon">🧠</div>
+            <h3>艾宾浩斯复习</h3>
+            <p>学完自动进入复习计划，按 1、2、4、7、15 天间隔提醒温故；错过复习的词可手动加入重新学习列表。</p>
+          </div>
+          <div class="feature">
+            <div class="icon">✨</div>
+            <h3>AI 讲解与生成</h3>
+            <p>遇到不懂的字词随时唤起 AI 讲解；输入主题即可让 AI 生成词单（需自行配置 DeepSeek API Key）。</p>
+          </div>
+          <div class="feature">
+            <div class="icon">📚</div>
+            <h3>精选内置词单</h3>
+            <p>一键导入初中、高中高频实词、虚词、诗词名句；也支持手动创建或 AI 生成自己的词单。</p>
+          </div>
+          <div class="feature">
+            <div class="icon">📄</div>
+            <h3>PDF 导出</h3>
+            <p>词单一键导出 PDF，打印出来随身复习。学习与复习提醒按你的节奏自动安排。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="container">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-sub">使用中遇到问题，先看看这里</p>
+        <div class="faq">
+          <details>
+            <summary>支持哪些背诵模式？</summary>
+            <div class="answer">
+              <p>支持三种词单类型：</p>
+              <p>· 字意句：字、释义、例句三合一<br>
+                 · QA 问答：问题和答案配对<br>
+                 · ABCD 选择：选择题形式，适合刷题</p>
+            </div>
+          </details>
+          <details>
+            <summary>免费版有哪些限制？</summary>
+            <div class="answer">
+              <p>免费版即可完整体验全部功能：每个词单最多 20 词，可创建 2 个词单，学习与复习合计每天 5 次。</p>
+            </div>
+          </details>
+          <details>
+            <summary>付费方案是怎样的？</summary>
+            <div class="answer">
+              <p>所有内购均为一次性买断、永久有效。可单独解锁「词数限制」「词单数限制」「学习次数限制」「复习次数限制」，也可以直接开通「全部付费功能」一次解锁所有权益。</p>
+              <p>更换设备或重装 App 后，可在付费页点击「恢复购买」找回已购权益。</p>
+            </div>
+          </details>
+          <details>
+            <summary>「重新学习列表」是什么？</summary>
+            <div class="answer">
+              <p>当某个词的复习间隔超过艾宾浩斯曲线要求时，App 会在复习时提醒你。确认「重新学习」后，这些词会加入重新学习列表，重新巩固后再回到正常复习周期。</p>
+            </div>
+          </details>
+          <details>
+            <summary>AI 讲解和 AI 生成词单怎么用？</summary>
+            <div class="answer">
+              <p>这两个功能依赖第三方 DeepSeek 服务，需要你在「设置 → AI 讲解」中填写自己的 DeepSeek API Key。相关请求只发送到你配置的 DeepSeek 服务，本应用不会另行收集或存储对话内容。</p>
+            </div>
+          </details>
+          <details>
+            <summary>我的学习数据存在哪里？</summary>
+            <div class="answer">
+              <p>词单、学习进度、复习记录、重新学习列表等数据均保存在设备本地。卸载 App 会删除应用沙盒内的本地数据，请谨慎操作。</p>
+            </div>
+          </details>
+          <details>
+            <summary>如何导出 PDF？</summary>
+            <div class="answer">
+              <p>在词单相关页面找到导出功能，即可将当前词单导出为 PDF 文件，方便打印或分享。</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container contact">
+        <h2 class="section-title">联系我们</h2>
+        <p class="section-sub">遇到问题或有建议，欢迎通过以下方式联系我们</p>
+
+        <p class="note">也可以在 App 内通过「设置 → 联系我们」反馈问题，我们会尽快核对处理。</p>
+      </div>
+    </section>
+
+    <!-- Privacy -->
+    <section id="privacy">
+      <div class="container">
+        <h2 class="section-title">隐私政策</h2>
+        <p class="section-sub">最后更新日期：2026 年 8 月 15 日</p>
+        <div class="legal-card">
+          <h3>引言</h3>
+          <p>欢迎使用「文以言文」（以下简称「本应用」）。我们非常重视您的隐私。本政策说明本应用如何处理您使用过程中产生的信息。除您主动使用的第三方服务外，本应用主要将数据保存在您的设备本地，不会上传到开发者服务器。</p>
+
+          <h4>我们处理的信息</h4>
+          <ul>
+            <li>本地学习数据：您创建或导入的词单、学习进度、复习记录、重新学习列表等，仅保存在设备本地（应用沙盒与系统偏好设置）。</li>
+            <li>偏好与提醒：外观模式、音效、通知时间与提醒文案等设置仅保存在设备本地。</li>
+            <li>系统通知：学习提醒与复习提醒为设备本地通知，仅在您授权后由系统调度，通知内容不经过任何服务器。</li>
+            <li>AI 讲解：当您使用 AI 讲解时，App 会将您输入的问题及最近对话记录发送至您自行配置的 DeepSeek 服务（api.deepseek.com），并使用您填写的 API Key 完成请求。除发送给该第三方外，本应用不会另行收集或存储对话内容。</li>
+            <li>AI 生成词单：当您使用 AI 生成词单功能时，App 会将您输入的词单描述及所选词单类型发送至您自行配置的 DeepSeek 服务，并使用您填写的 API Key 完成请求。除发送给该第三方外，本应用不会另行收集或存储该描述内容。</li>
+            <li>内购：购买、恢复购买及退款由 Apple App Store 处理，本应用不收集您的支付信息；购买状态仅保存在设备本地。</li>
+          </ul>
+
+          <h4>信息的存储与安全</h4>
+          <p>您的数据主要存储在设备本地，安全性取决于您的设备与系统设置。请妥善保管设备及您的 DeepSeek API Key。API Key 保存在设备本地的系统偏好设置中，不会上传给我们。</p>
+
+          <h4>第三方服务</h4>
+          <ul>
+            <li>Apple：内购与恢复购买经由 StoreKit / App Store 完成，请参阅 Apple 隐私政策。</li>
+            <li>DeepSeek：AI 讲解与 AI 生成词单请求发送至您配置的 DeepSeek API，请参阅 DeepSeek 平台的隐私政策。该服务由您自行注册并提供密钥，相关费用与责任由该服务方承担。</li>
+          </ul>
+
+          <h4>信息共享与披露</h4>
+          <p>我们不会向第三方出售、出租或交易您的个人信息。除上述 AI 讲解与 AI 生成词单请求发送至 DeepSeek、内购经 Apple 处理外，我们不会将您的数据上传、共享或披露给任何服务器或第三方。</p>
+
+          <h4>您的权利</h4>
+          <p>您可以在「设置 → 数据管理」中清空学习进度、复习记录与重新学习列表；在词单管理中删除词单；在「设置 → 通知」中关闭提醒；在「设置 → AI 讲解」中移除 API Key。卸载本应用将删除应用沙盒内的本地数据。</p>
+
+          <h4>儿童隐私</h4>
+          <p>本应用不面向 13 周岁以下儿童，我们不会有意收集儿童的个人信息。</p>
+
+          <h4>政策更新</h4>
+          <p>我们可能适时更新本政策，更新后的内容将在应用内展示。继续使用本应用即表示您接受更新后的政策。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Terms -->
+    <section id="terms">
+      <div class="container">
+        <h2 class="section-title">服务条款</h2>
+        <p class="section-sub">最后更新日期：2026 年 8 月 15 日</p>
+        <div class="legal-card">
+          <h3>接受条款</h3>
+          <p>使用「文以言文」应用即表示您已阅读、理解并同意本服务条款。如您不同意，请停止使用本应用。</p>
+
+          <h4>服务说明</h4>
+          <p>本应用是一款背诵与复习辅助工具，提供词单学习、艾宾浩斯复习、学习与复习提醒、AI 讲解与 AI 生成词单（需自行配置第三方 API Key）等功能。</p>
+
+          <h4>用户内容与行为规范</h4>
+          <p>您创建或导入的词单内容由您本人负责。您承诺相关内容合法合规，不侵犯他人合法权益，不包含违法违规、淫秽、诽谤、侵权或其他不当内容。开发者不对您导入的内容承担审核义务，但保留依法律要求处理的必要权利。</p>
+
+          <h4>AI 服务</h4>
+          <p>AI 讲解与 AI 生成词单依赖您自行提供的第三方 DeepSeek API Key 与服务。上述服务的可用性、准确性、费用及生成内容由第三方与 AI 模型负责。AI 生成内容仅供参考，可能有错误，请自行甄别，不构成任何专业建议。您使用第三方服务还应遵守其相关条款。</p>
+
+          <h4>内购与订阅</h4>
+          <p>本应用提供非消耗型内购以解锁更多功能。购买、退款及恢复购买遵循 Apple App Store 政策。购买状态记录在设备本地，可通过付费页的「恢复购买」恢复。</p>
+
+          <h4>知识产权</h4>
+          <p>本应用的界面、代码、名称及相关权利归开发者所有。您创建或导入的词单内容，其权利归您或原作者所有。应用内置的示例词单中，古籍原文均为公有领域内容；字词释义、句子翻译及考点提示由 AI 生成，不涉及第三方著作权。开发者不对 AI 生成部分主张著作权，示例词单仅供个人学习参考。</p>
+
+          <h4>免责声明</h4>
+          <p>本应用按「现状」提供，不保证服务无中断、无错误或完全符合您的期望。学习效果因人而异。在适用法律允许的范围内，开发者不对因使用本应用造成的任何直接或间接损失承担责任。</p>
+
+          <h4>服务变更与终止</h4>
+          <p>我们可能更新、变更、暂停或终止部分或全部功能，并保留不另行通知的权利。</p>
+
+          <h4>责任限制</h4>
+          <p>在适用法律允许的最大范围内，开发者对因使用或无法使用本应用所产生的任何损失所承担的责任总额，不超过您为相关功能实际支付的金额。</p>
+
+          <h4>适用法律与争议解决</h4>
+          <p>本条款受中华人民共和国法律管辖。因本应用或本条款产生的争议，双方应友好协商解决；协商不成的，提交开发者所在地有管辖权的人民法院处理。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content source -->
+    <section id="content-source">
+      <div class="container">
+        <h2 class="section-title">内容来源声明</h2>
+        <p class="section-sub">最后更新日期：2026 年 8 月 15 日</p>
+        <div class="legal-card">
+          <h3>古籍原文</h3>
+          <p>本应用内置词单中的文言文、古诗词原文均为公有领域古籍内容。原文本身不设版权限制。</p>
+
+          <h4>释义与翻译</h4>
+          <p>字词释义、句子白话翻译由 AI 生成，与任何出版社的教辅内容无关。</p>
+
+          <h4>例句出处</h4>
+          <p>例句后标注的篇目名称（如《生于忧患，死于安乐》孟子）仅用于定位原文出处，不代表与相关出版物的版本、选编或注释存在任何关联。</p>
+
+          <h4>考点提示</h4>
+          <p>诗词类词条中的「考点提示」由 AI 生成，不代表任何考试大纲、命题范围或教学要求。</p>
+
+          <h4>使用边界</h4>
+          <p>本应用全部内置内容仅供个人学习参考，不构成教学、考试或升学依据。如发现内容错漏，欢迎通过「设置 → 联系我们」反馈，我们将及时核对更正。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 文以言文 · 技术支持网站</p>
+      <p>背诵文言文，但不止于文言文。</p>
+    </div>
+  </footer>
+
+</body>
+</html>
